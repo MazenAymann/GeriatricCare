@@ -1,0 +1,15 @@
+{
+  "contactInfo": {
+    "name": "Abdullah",
+    "phone": "+201022936472",
+    "address": "10 Ahmed ellithy Street almanial",
+    "coordinates": "30°01'36.3\"N 31°13'29.7\"E",
+    "mapQuery": "30.02675,31.224916"
+  },
+  "services": [
+    { "id": 1, "icon": "Clock" },
+    { "id": 2, "icon": "Pill" },
+    { "id": 3, "icon": "Activity" },
+    { "id": 4, "icon": "Heart" }
+  ]
+}
