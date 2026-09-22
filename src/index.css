@@ -7,8 +7,8 @@
   --background: #f8fafc;
   --text-primary: #334155;
   --text-secondary: #64748b;
-  --glass-bg: rgba(255, 255, 255, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.08);
   --header-bg: rgba(255, 255, 255, 0.7);
   --hero-bg: linear-gradient(-45deg, #f8fafc, #e0f2fe, #f1f5f9, #ccfbf1);
   --services-bg: #fff;
