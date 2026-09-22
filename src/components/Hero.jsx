@@ -24,7 +24,7 @@ const Hero = () => {
 
       {/* Orb 1 */}
       <div style={{
-        position: 'absolute', top: '-10%', right: isRTL ? 'auto' : '-5%', left: isRTL ? '-5%' : 'auto',
+        position: 'absolute', top: '-10%', insetInlineStart: '-5%',
         width: '600px', height: '600px', borderRadius: '50%',
         background: 'radial-gradient(circle, var(--orb-1) 0%, transparent 65%)',
         filter: 'blur(50px)', zIndex: 0,
@@ -33,7 +33,7 @@ const Hero = () => {
 
       {/* Orb 2 */}
       <div style={{
-        position: 'absolute', bottom: '-20%', left: isRTL ? 'auto' : '-10%', right: isRTL ? '-10%' : 'auto',
+        position: 'absolute', bottom: '-20%', insetInlineEnd: '-10%',
         width: '700px', height: '700px', borderRadius: '50%',
         background: 'radial-gradient(circle, var(--orb-2) 0%, transparent 65%)',
         filter: 'blur(60px)', zIndex: 0,
@@ -53,7 +53,8 @@ const Hero = () => {
           display: 'grid', 
           gridTemplateColumns: '1fr',
           maxWidth: '800px',
-          margin: isRTL ? '0 0 0 auto' : '0'
+          marginInlineStart: '0',
+          marginInlineEnd: 'auto'
         }}>
           {/* Badge */}
           <motion.div
@@ -140,7 +141,7 @@ const Hero = () => {
               { num: '100%', label: i18n.language === 'ar' ? 'اهتمام شخصي' : 'Personal Attention' },
               { num: '5★', label: i18n.language === 'ar' ? 'خدمة موثوقة' : 'Trusted Service' }
             ].map((stat) => (
-              <div key={stat.num} style={{
+              <div className="stat-pill" key={stat.num} style={{
                 padding: '0.75rem 1.5rem',
                 background: 'var(--glass-bg)',
                 border: '1px solid var(--glass-border)',
@@ -149,7 +150,7 @@ const Hero = () => {
                 display: 'flex', flexDirection: 'column', alignItems: 'center'
               }}>
                 <span style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--primary-color)', lineHeight: 1 }}>{stat.num}</span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: '600', marginTop: '0.25rem' }}>{stat.label}</span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: '600', marginTop: '0.25rem', textAlign: 'center' }}>{stat.label}</span>
               </div>
             ))}
           </motion.div>

@@ -175,6 +175,7 @@ const Contact = () => {
             <motion.div 
               variants={itemVariants} 
               whileHover={{ scale: 1.03, y: -5, boxShadow: '0 20px 40px var(--card-hover-shadow)' }} 
+              onClick={() => window.open(`https://maps.google.com/maps?q=${info.mapQuery}`, '_blank', 'noopener,noreferrer')}
               style={{ 
                 background: 'var(--glass-bg)', 
                 backdropFilter: 'blur(20px)',
@@ -249,11 +250,11 @@ const Contact = () => {
               
               <motion.div 
                 whileHover={{ scale: 1.05 }}
+                onClick={() => window.open(`https://maps.google.com/maps?q=${info.mapQuery}`, '_blank', 'noopener,noreferrer')}
                 style={{
                   position: 'absolute',
                   bottom: '1.5rem',
-                  right: isRTL ? 'auto' : '1.5rem',
-                  left: isRTL ? '1.5rem' : 'auto',
+                  insetInlineEnd: '1.5rem',
                   background: 'var(--glass-bg)',
                   padding: '1rem 2rem',
                   borderRadius: '9999px',

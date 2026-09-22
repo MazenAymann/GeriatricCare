@@ -105,11 +105,12 @@ const Services = () => {
                 >
                   {/* Gradient accent top-right */}
                   <div style={{
-                    position: 'absolute', top: 0, right: 0,
+                    position: 'absolute', top: 0, insetInlineEnd: 0,
                     width: '100px', height: '100px',
                     background: iconGradients[index],
                     opacity: 0.06,
-                    borderRadius: '0 28px 0 100%'
+                    borderStartEndRadius: '28px',
+                    borderEndStartRadius: '100%'
                   }}></div>
 
                   {/* Icon */}

@@ -64,7 +64,7 @@ function App() {
         borderBottom: '1px solid var(--glass-border)',
         padding: '1rem 0'
       }}>
-        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -167,7 +167,7 @@ function App() {
       {/* Footer */}
       <footer style={{ backgroundColor: 'var(--footer-bg)', padding: '3rem 0' }}>
         <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.25rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-color)', fontWeight: '800', fontSize: '1.2rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-color)', fontWeight: '800', fontSize: '1.2rem', textAlign: 'center' }}>
             <div style={{ 
               width: '30px', height: '30px', borderRadius: '8px', 
               background: 'linear-gradient(135deg, var(--primary-light), var(--primary-color))',
