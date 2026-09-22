@@ -132,13 +132,19 @@ const Services = () => {
                   </p>
 
                   {/* Learn more link */}
-                  <motion.div 
-                    initial={{ opacity: 0, x: -10 }}
-                    whileHover={{ opacity: 1, x: 0 }}
-                    style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', marginTop: '1.5rem', color: 'var(--primary-color)', fontWeight: '600', fontSize: '0.9rem' }}
+                  <a 
+                    href="#contact"
+                    style={{ 
+                      display: 'flex', alignItems: 'center', gap: '0.35rem', marginTop: '1.5rem', 
+                      color: 'var(--primary-color)', fontWeight: '600', fontSize: '0.9rem',
+                      textDecoration: 'none',
+                      transition: 'gap 0.2s ease'
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.gap = '0.6rem'}
+                    onMouseLeave={e => e.currentTarget.style.gap = '0.35rem'}
                   >
                     {i18n.language === 'ar' ? 'اعرف أكثر' : 'Learn more'} <ArrowRight size={16} strokeWidth={2.5} />
-                  </motion.div>
+                  </a>
                 </motion.div>
               </motion.div>
             );
