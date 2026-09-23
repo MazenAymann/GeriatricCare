@@ -121,7 +121,7 @@ const Contact = () => {
             {/* Phone Card */}
             <motion.div 
               variants={itemVariants} 
-              whileHover={{ scale: 1.03, y: -5, boxShadow: '0 20px 40px var(--card-hover-shadow)' }} 
+              whileHover={{ scale: 1.02, y: -5, boxShadow: '0 20px 40px var(--card-hover-shadow)' }} 
               style={{ 
                 background: 'var(--glass-bg)', 
                 backdropFilter: 'blur(20px)',
@@ -129,7 +129,7 @@ const Contact = () => {
                 border: '1px solid var(--glass-border)',
                 padding: '2rem', 
                 display: 'flex', 
-                alignItems: 'center', 
+                alignItems: 'flex-start', 
                 gap: '1.5rem' 
               }}
             >
@@ -140,39 +140,69 @@ const Contact = () => {
               >
                 <Phone size={32} color="#fff" strokeWidth={2.5} />
               </motion.div>
-              <div style={{ flex: 1 }}>
-                <h4 style={{ color: 'var(--text-secondary)', marginBottom: '0.25rem', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.875rem', fontWeight: '600' }}>{t('contact.phone_number')}</h4>
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <h4 style={{ color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.875rem', fontWeight: '600' }}>{t('contact.phone_number')}</h4>
                 
-                {info.phones && info.phones.map((phone, idx) => (
-                  <div key={idx} style={{ marginBottom: '1rem' }}>
-                    <a href={`tel:${phone}`} dir="ltr" style={{ display: 'inline-block', fontSize: '1.75rem', fontWeight: '800', color: 'var(--secondary-color)', textDecoration: 'none', marginBottom: '0.5rem', letterSpacing: '-0.02em' }}>
-                      {phone}
-                    </a>
-                    <div style={{ display: 'flex', gap: '0.5rem' }}>
-                      <motion.a 
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        href={`https://wa.me/2${phone}`} 
-                        target="_blank" 
-                        rel="noreferrer" 
-                        style={{
-                          display: 'flex', alignItems: 'center', gap: '0.5rem',
-                          background: 'linear-gradient(135deg, #25D366, #128C7E)', 
-                          color: '#fff', 
-                          padding: '0.6rem 1.25rem', 
-                          borderRadius: '9999px',
-                          textDecoration: 'none', 
-                          fontSize: '0.875rem', 
-                          fontWeight: '700',
-                          boxShadow: '0 8px 20px rgba(37, 211, 102, 0.4)'
-                        }}
-                      >
-                        <MessageCircle size={18} strokeWidth={2.5} />
-                        WhatsApp
-                      </motion.a>
-                    </div>
-                  </div>
-                ))}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+                  {info.phones && info.phones.map((phone, idx) => (
+                    <motion.div 
+                      key={idx} 
+                      whileHover={{ scale: 1.03, backgroundColor: 'var(--badge-bg)' }}
+                      style={{ 
+                        background: 'rgba(255,255,255,0.02)', 
+                        border: '1px solid var(--glass-border)',
+                        borderRadius: '16px', 
+                        padding: '1.25rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '1rem',
+                        position: 'relative',
+                        overflow: 'hidden',
+                        transition: 'background-color 0.3s ease'
+                      }}
+                    >
+                      {/* Sub-bg glow */}
+                      <div style={{ position: 'absolute', top: '-50%', right: '-50%', width: '100px', height: '100px', background: 'var(--primary-color)', filter: 'blur(40px)', opacity: 0.1, zIndex: 0 }}></div>
+                      
+                      <div style={{ position: 'relative', zIndex: 1 }}>
+                        <a href={`tel:${phone}`} dir="ltr" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.4rem', fontWeight: '800', color: 'var(--secondary-color)', textDecoration: 'none', letterSpacing: '-0.02em', transition: 'color 0.2s ease' }}
+                        onMouseEnter={e => e.currentTarget.style.color = 'var(--primary-color)'}
+                        onMouseLeave={e => e.currentTarget.style.color = 'var(--secondary-color)'}
+                        >
+                          {phone}
+                        </a>
+                      </div>
+
+                      <div style={{ position: 'relative', zIndex: 1 }}>
+                        <motion.a 
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          href={`https://wa.me/2${phone}`} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          style={{
+                            display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                            background: 'linear-gradient(135deg, rgba(37, 211, 102, 0.15), rgba(18, 140, 126, 0.15))', 
+                            border: '1px solid rgba(37, 211, 102, 0.3)',
+                            color: '#25D366', 
+                            padding: '0.6rem 1rem', 
+                            borderRadius: '12px',
+                            textDecoration: 'none', 
+                            fontSize: '0.875rem', 
+                            fontWeight: '700',
+                            width: '100%',
+                            transition: 'all 0.3s ease'
+                          }}
+                          onMouseEnter={e => { e.currentTarget.style.background = '#25D366'; e.currentTarget.style.color = '#fff'; }}
+                          onMouseLeave={e => { e.currentTarget.style.background = 'linear-gradient(135deg, rgba(37, 211, 102, 0.15), rgba(18, 140, 126, 0.15))'; e.currentTarget.style.color = '#25D366'; }}
+                        >
+                          <MessageCircle size={18} strokeWidth={2.5} />
+                          WhatsApp
+                        </motion.a>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
 
