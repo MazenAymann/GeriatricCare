@@ -114,7 +114,7 @@ const Contact = () => {
               </div>
               <div>
                 <h4 style={{ fontSize: '1.125rem', color: 'var(--text-secondary)', marginBottom: '0.25rem', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.875rem', fontWeight: '600' }}>{t('contact.primary_caregiver')}</h4>
-                <p style={{ fontSize: '1.75rem', fontWeight: '800', color: 'var(--secondary-color)', letterSpacing: '-0.02em' }}>{info.name}</p>
+                <p style={{ fontSize: '1.75rem', fontWeight: '800', color: 'var(--secondary-color)', letterSpacing: '-0.02em' }}>{t('contact.caregiver_name')}</p>
               </div>
             </motion.div>
 

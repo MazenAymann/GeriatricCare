@@ -6,13 +6,13 @@ const resources = {
     translation: {
       "seo": {
         "title": "بر تمريض منزلي ورعايه المسنين بالمنزل",
-        "description": "Compassionate, 24/7 in-home geriatric nursing, medication management, and post-surgery recovery by Abdullah in Almanial, Cairo."
+        "description": "Compassionate, 24/7 in-home geriatric nursing, medication management, and post-surgery recovery by Abdullah Samir in Almanial, Cairo."
       },
       "app": {
         "title": "بر تمريض منزلي ورعايه المسنين بالمنزل",
         "services": "Services",
         "contact": "Contact",
-        "rights": "Geriatric Care by Abdullah. All rights reserved."
+        "rights": "Geriatric Care by Abdullah Samir. All rights reserved."
       },
       "hero": {
         "compassionate": "Compassionate",
@@ -35,6 +35,7 @@ const resources = {
         "s4_desc": "Compassionate emotional support and assistance with daily activities."
       },
       "contact": {
+        "caregiver_name": "Abdullah Samir",
         "title": "Get In Touch",
         "subtitle": "We're here to help. Contact us to discuss your care needs.",
         "primary_caregiver": "Primary Caregiver",
@@ -47,13 +48,13 @@ const resources = {
     translation: {
       "seo": {
         "title": "بر تمريض منزلي ورعايه المسنين بالمنزل",
-        "description": "رعاية مسنين 24 ساعة في البيت، تظبيط أدوية، ومتابعة بعد العمليات مع عبدالله في المنيل، القاهرة."
+        "description": "رعاية مسنين 24 ساعة في البيت، تظبيط أدوية، ومتابعة بعد العمليات مع عبدالله سمير في المنيل، القاهرة."
       },
       "app": {
         "title": "بر تمريض منزلي ورعايه المسنين بالمنزل",
         "services": "خدماتنا",
         "contact": "كلمنا",
-        "rights": "رعاية المسنين مع عبدالله. كل الحقوق محفوظة."
+        "rights": "رعاية المسنين مع عبدالله سمير. كل الحقوق محفوظة."
       },
       "hero": {
         "compassionate": "رعاية مسنين",
@@ -76,6 +77,7 @@ const resources = {
         "s4_desc": "دعم نفسي وونس ومساعدة في كل حاجة بيحتاجوها في يومهم."
       },
       "contact": {
+        "caregiver_name": "عبدالله سمير",
         "title": "عايز تكلمنا؟",
         "subtitle": "إحنا دايماً معاك وفي خدمتك.. كلمنا في أي وقت.",
         "primary_caregiver": "الممرض المسؤول",

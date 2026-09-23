@@ -87,7 +87,7 @@ const Hero = () => {
             transition={{ delay: 0.3, duration: 0.8 }}
             style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', marginBottom: '2.5rem', maxWidth: '580px', lineHeight: '1.85' }}
           >
-            {t('hero.description', { name })}
+            {t('hero.description', { name: t('contact.caregiver_name') })}
           </motion.p>
 
           {/* CTA Row */}
