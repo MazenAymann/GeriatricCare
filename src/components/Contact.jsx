@@ -142,32 +142,37 @@ const Contact = () => {
               </motion.div>
               <div style={{ flex: 1 }}>
                 <h4 style={{ color: 'var(--text-secondary)', marginBottom: '0.25rem', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.875rem', fontWeight: '600' }}>{t('contact.phone_number')}</h4>
-                <a href={`tel:${info.phone}`} dir="ltr" style={{ display: 'inline-block', fontSize: '1.75rem', fontWeight: '800', color: 'var(--secondary-color)', textDecoration: 'none', marginBottom: '0.75rem', letterSpacing: '-0.02em' }}>
-                  {info.phone}
-                </a>
-                <div style={{ display: 'flex', gap: '0.5rem' }}>
-                  <motion.a 
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    href={`https://wa.me/${info.phone.replace('+', '')}`} 
-                    target="_blank" 
-                    rel="noreferrer" 
-                    style={{
-                      display: 'flex', alignItems: 'center', gap: '0.5rem',
-                      background: 'linear-gradient(135deg, #25D366, #128C7E)', 
-                      color: '#fff', 
-                      padding: '0.6rem 1.25rem', 
-                      borderRadius: '9999px',
-                      textDecoration: 'none', 
-                      fontSize: '0.875rem', 
-                      fontWeight: '700',
-                      boxShadow: '0 8px 20px rgba(37, 211, 102, 0.4)'
-                    }}
-                  >
-                    <MessageCircle size={18} strokeWidth={2.5} />
-                    WhatsApp
-                  </motion.a>
-                </div>
+                
+                {info.phones && info.phones.map((phone, idx) => (
+                  <div key={idx} style={{ marginBottom: '1rem' }}>
+                    <a href={`tel:${phone}`} dir="ltr" style={{ display: 'inline-block', fontSize: '1.75rem', fontWeight: '800', color: 'var(--secondary-color)', textDecoration: 'none', marginBottom: '0.5rem', letterSpacing: '-0.02em' }}>
+                      {phone}
+                    </a>
+                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                      <motion.a 
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        href={`https://wa.me/2${phone}`} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        style={{
+                          display: 'flex', alignItems: 'center', gap: '0.5rem',
+                          background: 'linear-gradient(135deg, #25D366, #128C7E)', 
+                          color: '#fff', 
+                          padding: '0.6rem 1.25rem', 
+                          borderRadius: '9999px',
+                          textDecoration: 'none', 
+                          fontSize: '0.875rem', 
+                          fontWeight: '700',
+                          boxShadow: '0 8px 20px rgba(37, 211, 102, 0.4)'
+                        }}
+                      >
+                        <MessageCircle size={18} strokeWidth={2.5} />
+                        WhatsApp
+                      </motion.a>
+                    </div>
+                  </div>
+                ))}
               </div>
             </motion.div>
 

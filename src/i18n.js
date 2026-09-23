@@ -5,11 +5,11 @@ const resources = {
   en: {
     translation: {
       "seo": {
-        "title": "CareFlow | Professional Geriatric Nursing by Abdullah",
+        "title": "بر تمريض منزلي ورعايه المسنين بالمنزل",
         "description": "Compassionate, 24/7 in-home geriatric nursing, medication management, and post-surgery recovery by Abdullah in Almanial, Cairo."
       },
       "app": {
-        "title": "CareFlow",
+        "title": "بر تمريض منزلي ورعايه المسنين بالمنزل",
         "services": "Services",
         "contact": "Contact",
         "rights": "Geriatric Care by Abdullah. All rights reserved."
@@ -46,11 +46,11 @@ const resources = {
   ar: {
     translation: {
       "seo": {
-        "title": "كير فلو | رعاية مسنين ممتازة مع عبدالله",
+        "title": "بر تمريض منزلي ورعايه المسنين بالمنزل",
         "description": "رعاية مسنين 24 ساعة في البيت، تظبيط أدوية، ومتابعة بعد العمليات مع عبدالله في المنيل، القاهرة."
       },
       "app": {
-        "title": "كير فلو",
+        "title": "بر تمريض منزلي ورعايه المسنين بالمنزل",
         "services": "خدماتنا",
         "contact": "كلمنا",
         "rights": "رعاية المسنين مع عبدالله. كل الحقوق محفوظة."
@@ -90,7 +90,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: localStorage.getItem('language') || 'en', // default language
+    lng: localStorage.getItem('language') || 'ar', // default language
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false
