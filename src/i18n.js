@@ -5,11 +5,11 @@ const resources = {
   en: {
     translation: {
       "seo": {
-        "title": "بر تمريض منزلي ورعايه المسنين بالمنزل",
+        "title": "Birr for Home Nursing and Elderly Care",
         "description": "Compassionate, 24/7 in-home geriatric nursing, medication management, and post-surgery recovery by Abdullah Samir in Almanial, Cairo."
       },
       "app": {
-        "title": "بر تمريض منزلي ورعايه المسنين بالمنزل",
+        "title": "Birr for Home Nursing and Elderly Care",
         "services": "Services",
         "contact": "Contact",
         "rights": "Geriatric Care by Abdullah Samir. All rights reserved."
@@ -47,11 +47,11 @@ const resources = {
   ar: {
     translation: {
       "seo": {
-        "title": "بر تمريض منزلي ورعايه المسنين بالمنزل",
+        "title": "بر للتمريض المنزلي ورعايه المسنين بالمنزل",
         "description": "رعاية مسنين 24 ساعة في البيت، تظبيط أدوية، ومتابعة بعد العمليات مع عبدالله سمير في المنيل، القاهرة."
       },
       "app": {
-        "title": "بر تمريض منزلي ورعايه المسنين بالمنزل",
+        "title": "بر للتمريض المنزلي ورعايه المسنين بالمنزل",
         "services": "خدماتنا",
         "contact": "كلمنا",
         "rights": "رعاية المسنين مع عبدالله سمير. كل الحقوق محفوظة."
