@@ -83,16 +83,9 @@ function App() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-color)', fontWeight: '800', fontSize: '1.3rem', letterSpacing: '-0.02em' }}
+            style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--primary-color)', fontWeight: '800', fontSize: '1.3rem', letterSpacing: '-0.02em' }}
           >
-            <div style={{ 
-              width: '34px', height: '34px', borderRadius: '10px', 
-              background: 'linear-gradient(135deg, var(--primary-light), var(--primary-color))',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 4px 12px rgba(13, 148, 136, 0.3)'
-            }}>
-              <Heart size={18} color="#fff" fill="#fff" strokeWidth={0} />
-            </div>
+            <img src="/favicon.svg" alt="Birr Logo" style={{ width: '42px', height: '42px', filter: 'drop-shadow(0 4px 12px rgba(13, 148, 136, 0.2))' }} />
             <span>{t('app.title')}</span>
           </motion.div>
 
@@ -180,14 +173,8 @@ function App() {
       {/* Footer */}
       <footer style={{ backgroundColor: 'var(--footer-bg)', padding: '3rem 0' }}>
         <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.25rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-color)', fontWeight: '800', fontSize: '1.2rem', textAlign: 'center' }}>
-            <div style={{ 
-              width: '30px', height: '30px', borderRadius: '8px', 
-              background: 'linear-gradient(135deg, var(--primary-light), var(--primary-color))',
-              display: 'flex', alignItems: 'center', justifyContent: 'center'
-            }}>
-              <Heart size={16} color="#fff" fill="#fff" strokeWidth={0} />
-            </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--primary-color)', fontWeight: '800', fontSize: '1.2rem', textAlign: 'center' }}>
+            <img src="/favicon.svg" alt="Birr Logo" style={{ width: '34px', height: '34px', filter: 'drop-shadow(0 4px 8px rgba(13, 148, 136, 0.2))' }} />
             {t('app.title')}
           </div>
           <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)' }}></div>

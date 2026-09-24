@@ -1,64 +1,24 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.2000/svg">
+  <g transform="translate(58.5, 21)">
+    <!-- Right side (Blue Gradient) -->
+    <path d="M197.5 390 C197.5 390 375.5 235.86 375.5 168.5 C375.5 119.623 335.877 80 287 80 C246.398 80 212.257 107.685 197.5 144.597 V390 Z" fill="url(#gradRight)"/>
+    
+    <!-- Left side (Teal Gradient) -->
+    <path d="M197.5 390 C197.5 390 19.5 235.86 19.5 168.5 C19.5 119.623 59.1228 80 108 80 C148.602 80 182.743 107.685 197.5 144.597 V390 Z" fill="url(#gradLeft)"/>
+    
+    <!-- Medical Cross -->
+    <rect x="183.5" y="170" width="28" height="90" rx="10" fill="white" />
+    <rect x="152.5" y="201" width="90" height="28" rx="10" fill="white" />
+  </g>
   <defs>
-    <!-- Soft Drop Shadow -->
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="18" stdDeviation="25" flood-color="#0f172a" flood-opacity="0.25" />
-    </filter>
-    
-    <!-- Background Glow -->
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="40" result="blur" />
-    </filter>
-    
-    <!-- Beautiful 3D Gradient for Heart -->
-    <linearGradient id="heartGrad" x1="20%" y1="0%" x2="80%" y2="100%">
-      <stop offset="0%" stop-color="#2dd4bf"/> <!-- Bright Teal -->
-      <stop offset="50%" stop-color="#0d9488"/> <!-- Base Teal -->
-      <stop offset="100%" stop-color="#0f766e"/> <!-- Deep Teal -->
+    <!-- Modern crisp gradients -->
+    <linearGradient id="gradRight" x1="197.5" y1="144" x2="375.5" y2="390" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#1E3A8A"/>
     </linearGradient>
-
-    <!-- Highlight stroke gradient -->
-    <linearGradient id="highlightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
-      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.1"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-    
-    <!-- Cross Gradient -->
-    <linearGradient id="crossGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="100%" stop-color="#f8fafc"/>
+    <linearGradient id="gradLeft" x1="19.5" y1="80" x2="197.5" y2="390" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2DD4BF"/>
+      <stop offset="100%" stop-color="#0F766E"/>
     </linearGradient>
   </defs>
-
-  <!-- Glowing background rings -->
-  <circle cx="256" cy="256" r="160" fill="#14b8a6" opacity="0.15" filter="url(#glow)" />
-  <circle cx="256" cy="256" r="100" fill="#0d9488" opacity="0.25" filter="url(#glow)" />
-
-  <!-- The Main Icon with Shadow -->
-  <g filter="url(#shadow)">
-    <g transform="translate(58.5, 21)">
-      <!-- Main Heart Fill -->
-      <path d="M375.5 168.5C375.5 119.623 335.877 80 287 80C246.398 80 212.257 107.685 197.5 144.597C182.743 107.685 148.602 80 108 80C59.1228 80 19.5 119.623 19.5 168.5C19.5 235.86 197.5 390 197.5 390C197.5 390 375.5 235.86 375.5 168.5Z" fill="url(#heartGrad)"/>
-      
-      <!-- Inner Highlight Stroke for 3D glass effect -->
-      <path d="M375.5 168.5C375.5 119.623 335.877 80 287 80C246.398 80 212.257 107.685 197.5 144.597C182.743 107.685 148.602 80 108 80C59.1228 80 19.5 119.623 19.5 168.5C19.5 235.86 197.5 390 197.5 390C197.5 390 375.5 235.86 375.5 168.5Z" stroke="url(#highlightGrad)" stroke-width="4" />
-      
-      <!-- Medical Cross -->
-      <path d="M228 212H208V192C208 184.268 201.732 178 194 178C186.268 178 180 184.268 180 192V212H160C152.268 212 146 218.268 146 226C146 233.732 152.268 240 160 240H180V260C180 267.732 186.268 274 194 274C201.732 274 208 267.732 208 260V240H228C235.732 240 242 233.732 242 226C242 218.268 235.732 212 228 212Z" fill="url(#crossGrad)"/>
-    </g>
-  </g>
-  
-  <!-- Decorative magical sparkles / dots -->
-  <circle cx="90" cy="110" r="14" fill="#34d399" opacity="0.6" filter="url(#glow)"/>
-  <circle cx="90" cy="110" r="6" fill="#34d399" opacity="0.9" />
-  
-  <circle cx="430" cy="150" r="20" fill="#38bdf8" opacity="0.4" filter="url(#glow)"/>
-  <circle cx="430" cy="150" r="8" fill="#38bdf8" opacity="0.8" />
-  
-  <circle cx="120" cy="400" r="16" fill="#fbbf24" opacity="0.5" filter="url(#glow)"/>
-  <circle cx="120" cy="400" r="6" fill="#fbbf24" opacity="0.9" />
-  
-  <circle cx="400" cy="380" r="12" fill="#a78bfa" opacity="0.5" filter="url(#glow)"/>
-  <circle cx="400" cy="380" r="5" fill="#a78bfa" opacity="0.8" />
 </svg>
