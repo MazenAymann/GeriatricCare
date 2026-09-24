@@ -1,17 +1,21 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectServices } from '../store/appSlice';
-import { Clock, Pill, Activity, Heart, ArrowRight } from 'lucide-react';
+import { HeartPulse, Users, Stethoscope, Activity, Droplet, TestTube, Scan, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
-const iconComponents = { Clock, Pill, Activity, Heart };
+const iconComponents = { HeartPulse, Users, Stethoscope, Activity, Droplet, TestTube, Scan };
 
 const iconGradients = [
   'linear-gradient(135deg, #0d9488, #059669)',
   'linear-gradient(135deg, #6366f1, #8b5cf6)',
   'linear-gradient(135deg, #f59e0b, #d97706)',
   'linear-gradient(135deg, #ec4899, #db2777)',
+  'linear-gradient(135deg, #3b82f6, #2563eb)',
+  'linear-gradient(135deg, #ef4444, #dc2626)',
+  'linear-gradient(135deg, #10b981, #047857)',
 ];
 
 const containerVariants = {
@@ -126,15 +130,15 @@ const Services = () => {
 
                   {/* Content */}
                   <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: 'var(--secondary-color)', fontWeight: '700' }}>
-                    {t(`services.s${service.id}_title`)}
+                    {t(`services.s_${service.id}_title`)}
                   </h3>
                   <p style={{ color: 'var(--text-secondary)', lineHeight: '1.75', flex: 1, fontSize: '0.95rem' }}>
-                    {t(`services.s${service.id}_desc`)}
+                    {t(`services.s_${service.id}_desc`)}
                   </p>
 
                   {/* Learn more link */}
-                  <a 
-                    href="#contact"
+                  <Link 
+                    to={`/service/${service.id}`}
                     style={{ 
                       display: 'flex', alignItems: 'center', gap: '0.35rem', marginTop: '1.5rem', 
                       color: 'var(--primary-color)', fontWeight: '600', fontSize: '0.9rem',
@@ -145,7 +149,7 @@ const Services = () => {
                     onMouseLeave={e => e.currentTarget.style.gap = '0.35rem'}
                   >
                     {i18n.language === 'ar' ? 'اعرف أكثر' : 'Learn more'} <ArrowRight size={16} strokeWidth={2.5} />
-                  </a>
+                  </Link>
                 </motion.div>
               </motion.div>
             );

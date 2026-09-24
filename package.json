@@ -20,7 +20,8 @@
     "react-dom": "^19.2.8",
     "react-helmet-async": "^3.0.0",
     "react-i18next": "^17.0.15",
-    "react-redux": "^9.3.0"
+    "react-redux": "^9.3.0",
+    "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
     "@types/react": "^19.2.18",

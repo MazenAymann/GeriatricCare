@@ -4,6 +4,7 @@ import { selectContactInfo } from '../store/appSlice';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const { name } = useSelector(selectContactInfo);
@@ -97,36 +98,37 @@ const Hero = () => {
             transition={{ delay: 0.45, duration: 0.8 }}
             style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}
           >
-            <motion.a
-              href="#contact"
-              className="btn-primary"
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              style={{ fontSize: '1.05rem', padding: '0.95rem 2.25rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
-            >
-              {t('hero.get_in_touch')}
-              <ArrowRight size={18} strokeWidth={2.5} style={{ transform: isRTL ? 'rotate(180deg)' : 'none' }} />
-            </motion.a>
+            <Link to="/#contact" style={{ textDecoration: 'none' }}>
+              <motion.div
+                className="btn-primary"
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                style={{ fontSize: '1.05rem', padding: '0.95rem 2.25rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+              >
+                {t('hero.get_in_touch')}
+                <ArrowRight size={18} strokeWidth={2.5} style={{ transform: isRTL ? 'rotate(180deg)' : 'none' }} />
+              </motion.div>
+            </Link>
 
-            <motion.a
-              href="#services"
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              style={{ 
-                display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                fontSize: '1.05rem', padding: '0.95rem 2.25rem',
-                background: 'var(--glass-bg)', 
-                color: 'var(--primary-color)', 
-                border: '1.5px solid var(--badge-border)',
-                borderRadius: '9999px',
-                textDecoration: 'none',
-                fontWeight: '600',
-                backdropFilter: 'blur(12px)',
-                transition: 'all 0.3s ease'
-              }}
-            >
-              {t('hero.our_services')}
-            </motion.a>
+            <Link to="/#services" style={{ textDecoration: 'none' }}>
+              <motion.div
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                style={{ 
+                  display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                  fontSize: '1.05rem', padding: '0.95rem 2.25rem',
+                  background: 'var(--glass-bg)', 
+                  color: 'var(--primary-color)', 
+                  border: '1.5px solid var(--badge-border)',
+                  borderRadius: '9999px',
+                  fontWeight: '600',
+                  backdropFilter: 'blur(12px)',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                {t('hero.our_services')}
+              </motion.div>
+            </Link>
           </motion.div>
 
           {/* Stat pills */}
@@ -137,6 +139,7 @@ const Hero = () => {
             style={{ display: 'flex', gap: '1rem', marginTop: '3.5rem', flexWrap: 'wrap' }}
           >
             {[
+              { num: `+${Math.max(1, new Date().getFullYear() - 2026 + 1)}`, label: i18n.language === 'ar' ? 'سنوات خبرة' : 'Years Exp.' },
               { num: '24/7', label: i18n.language === 'ar' ? 'رعاية مستمرة' : 'Care Available' },
               { num: '100%', label: i18n.language === 'ar' ? 'اهتمام شخصي' : 'Personal Attention' },
               { num: '5★', label: i18n.language === 'ar' ? 'خدمة موثوقة' : 'Trusted Service' }

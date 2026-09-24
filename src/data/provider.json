@@ -7,9 +7,12 @@
     "mapQuery": "30.033693,31.233489"
   },
   "services": [
-    { "id": 1, "icon": "Clock" },
-    { "id": 2, "icon": "Pill" },
-    { "id": 3, "icon": "Activity" },
-    { "id": 4, "icon": "Heart" }
+    { "id": "nursing", "icon": "HeartPulse" },
+    { "id": "elderly", "icon": "Users" },
+    { "id": "doctor", "icon": "Stethoscope" },
+    { "id": "physio", "icon": "Activity" },
+    { "id": "iv", "icon": "Droplet" },
+    { "id": "catheter", "icon": "TestTube" },
+    { "id": "xray", "icon": "Scan" }
   ]
 }
