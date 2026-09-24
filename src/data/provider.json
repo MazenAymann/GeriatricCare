@@ -2,9 +2,9 @@
   "contactInfo": {
     "name": "Abdullah",
     "phones": ["01115276605", "01095071065"],
-    "address": "10 Ahmed ellithy Street almanial",
-    "coordinates": "30°01'36.3\"N 31°13'29.7\"E",
-    "mapQuery": "30.02675,31.224916"
+    "address": "Al Kasr Al Aini",
+    "coordinates": "30°02'01.3\"N 31°14'00.6\"E",
+    "mapQuery": "30.033693,31.233489"
   },
   "services": [
     { "id": 1, "icon": "Clock" },
