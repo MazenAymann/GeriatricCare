@@ -101,10 +101,11 @@ const Contact = () => {
                 backdropFilter: 'blur(20px)',
                 borderRadius: '24px',
                 border: '1px solid var(--glass-border)',
-                padding: '2rem', 
+                padding: 'clamp(1.25rem, 5vw, 2rem)', 
                 display: 'flex', 
+                flexWrap: 'wrap',
                 alignItems: 'center', 
-                gap: '1.5rem', 
+                gap: 'clamp(1rem, 4vw, 1.5rem)', 
                 cursor: 'pointer',
                 transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
               }}
@@ -112,7 +113,7 @@ const Contact = () => {
               <div style={{ width: '70px', height: '70px', borderRadius: '20px', background: 'linear-gradient(135deg, var(--primary-light), var(--primary-color))', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 10px 25px rgba(13, 148, 136, 0.3)' }}>
                 <User size={32} color="#fff" strokeWidth={2.5} />
               </div>
-              <div>
+              <div style={{ flex: '1 1 150px' }}>
                 <h4 style={{ fontSize: '1.125rem', color: 'var(--text-secondary)', marginBottom: '0.25rem', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.875rem', fontWeight: '600' }}>{t('contact.primary_caregiver')}</h4>
                 <p style={{ fontSize: '1.75rem', fontWeight: '800', color: 'var(--secondary-color)', letterSpacing: '-0.02em' }}>{t('contact.caregiver_name')}</p>
               </div>
@@ -127,10 +128,11 @@ const Contact = () => {
                 backdropFilter: 'blur(20px)',
                 borderRadius: '24px',
                 border: '1px solid var(--glass-border)',
-                padding: '2rem', 
+                padding: 'clamp(1.25rem, 5vw, 2rem)', 
                 display: 'flex', 
+                flexWrap: 'wrap',
                 alignItems: 'flex-start', 
-                gap: '1.5rem' 
+                gap: 'clamp(1rem, 4vw, 1.5rem)' 
               }}
             >
               <motion.div 
@@ -140,7 +142,7 @@ const Contact = () => {
               >
                 <Phone size={32} color="#fff" strokeWidth={2.5} />
               </motion.div>
-              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ flex: '1 1 150px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <h4 style={{ color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.875rem', fontWeight: '600' }}>{t('contact.phone_number')}</h4>
                 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '1rem' }}>
@@ -152,7 +154,7 @@ const Contact = () => {
                         background: 'rgba(255,255,255,0.02)', 
                         border: '1px solid var(--glass-border)',
                         borderRadius: '16px', 
-                        padding: '1.25rem',
+                        padding: 'clamp(1rem, 4vw, 1.25rem)',
                         display: 'flex',
                         flexDirection: 'column',
                         gap: '1rem',
@@ -165,7 +167,7 @@ const Contact = () => {
                       <div style={{ position: 'absolute', top: '-50%', right: '-50%', width: '100px', height: '100px', background: 'var(--primary-color)', filter: 'blur(40px)', opacity: 0.1, zIndex: 0 }}></div>
                       
                       <div style={{ position: 'relative', zIndex: 1 }}>
-                        <a href={`tel:${phone}`} dir="ltr" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.4rem', fontWeight: '800', color: 'var(--secondary-color)', textDecoration: 'none', letterSpacing: '-0.02em', transition: 'color 0.2s ease' }}
+                        <a href={`tel:${phone}`} dir="ltr" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: 'clamp(1.15rem, 5vw, 1.4rem)', fontWeight: '800', color: 'var(--secondary-color)', textDecoration: 'none', letterSpacing: '-0.02em', transition: 'color 0.2s ease', wordBreak: 'break-word' }}
                         onMouseEnter={e => e.currentTarget.style.color = 'var(--primary-color)'}
                         onMouseLeave={e => e.currentTarget.style.color = 'var(--secondary-color)'}
                         >
@@ -216,10 +218,11 @@ const Contact = () => {
                 backdropFilter: 'blur(20px)',
                 borderRadius: '24px',
                 border: '1px solid var(--glass-border)',
-                padding: '2rem', 
+                padding: 'clamp(1.25rem, 5vw, 2rem)', 
                 display: 'flex', 
+                flexWrap: 'wrap',
                 alignItems: 'center', 
-                gap: '1.5rem', 
+                gap: 'clamp(1rem, 4vw, 1.5rem)', 
                 cursor: 'pointer',
                 transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
               }}
@@ -227,7 +230,7 @@ const Contact = () => {
               <div style={{ width: '70px', height: '70px', borderRadius: '20px', background: 'linear-gradient(135deg, #f59e0b, #b45309)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 10px 25px rgba(245, 158, 11, 0.3)' }}>
                 <MapPin size={32} color="#fff" strokeWidth={2.5} />
               </div>
-              <div>
+              <div style={{ flex: '1 1 150px' }}>
                 <h4 style={{ color: 'var(--text-secondary)', marginBottom: '0.25rem', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.875rem', fontWeight: '600' }}>{t('contact.location')}</h4>
                 <p style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--secondary-color)', marginBottom: '0.25rem', lineHeight: '1.4' }}>{info.address}</p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-color)', fontSize: '0.875rem', fontWeight: '600' }}>
