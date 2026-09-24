@@ -50,7 +50,20 @@ function App() {
         <meta property="og:title" content={t('seo.title')} />
         <meta property="og:description" content={t('seo.description')} />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Birr" />
         <meta property="og:locale" content={i18n.language === 'ar' ? 'ar_EG' : 'en_US'} />
+        
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Birr",
+              "alternateName": ["بر للتمريض المنزلي", "Birr Care", "Birr Home Nursing"],
+              "url": "https://geriatriccare.vercel.app/"
+            }
+          `}
+        </script>
       </Helmet>
 
       {/* Header */}

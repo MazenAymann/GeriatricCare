@@ -6,7 +6,7 @@ const resources = {
     translation: {
       "seo": {
         "title": "Birr for Home Nursing and Elderly Care",
-        "description": "Compassionate, 24/7 in-home geriatric nursing, medication management, and post-surgery recovery by Abdullah Samir in Almanial, Cairo."
+        "description": "Compassionate, 24/7 in-home geriatric nursing, medication management, and post-surgery recovery by Abdullah Samir in Almanial, Cairo. Phone: 01115276605 / 01095071065."
       },
       "app": {
         "title": "Birr for Home Nursing and Elderly Care",
@@ -48,7 +48,7 @@ const resources = {
     translation: {
       "seo": {
         "title": "بر للتمريض المنزلي ورعايه المسنين بالمنزل",
-        "description": "رعاية مسنين 24 ساعة في البيت، تظبيط أدوية، ومتابعة بعد العمليات مع عبدالله سمير في المنيل، القاهرة."
+        "description": "رعاية مسنين 24 ساعة في البيت، تظبيط أدوية، ومتابعة بعد العمليات مع عبدالله سمير في المنيل، القاهرة. تليفون: 01115276605 / 01095071065."
       },
       "app": {
         "title": "بر للتمريض المنزلي ورعايه المسنين بالمنزل",
