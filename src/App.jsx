@@ -85,7 +85,7 @@ function App() {
             transition={{ duration: 0.5 }}
             style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--primary-color)', fontWeight: '800', fontSize: '1.3rem', letterSpacing: '-0.02em' }}
           >
-            <img src="/favicon.png?v=2" alt="Birr Logo" style={{ width: '42px', height: '42px', borderRadius: '50%', objectFit: 'cover', filter: 'drop-shadow(0 4px 12px rgba(13, 148, 136, 0.1))' }} />
+            <img src="/favicon.png?v=3" alt="Birr Logo" style={{ width: '42px', height: '42px', borderRadius: '50%', objectFit: 'cover', filter: 'drop-shadow(0 4px 12px rgba(13, 148, 136, 0.1))' }} />
             <span>{t('app.title')}</span>
           </motion.div>
 
@@ -174,7 +174,7 @@ function App() {
       <footer style={{ backgroundColor: 'var(--footer-bg)', padding: '3rem 0' }}>
         <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.25rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--primary-color)', fontWeight: '800', fontSize: '1.2rem', textAlign: 'center' }}>
-            <img src="/favicon.png?v=2" alt="Birr Logo" style={{ width: '38px', height: '38px', borderRadius: '50%', objectFit: 'cover' }} />
+            <img src="/favicon.png?v=3" alt="Birr Logo" style={{ width: '38px', height: '38px', borderRadius: '50%', objectFit: 'cover' }} />
             {t('app.title')}
           </div>
           <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)' }}></div>
