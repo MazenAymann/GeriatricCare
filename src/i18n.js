@@ -89,7 +89,8 @@ const resources = {
         "subtitle": "We're here to help. Contact us to discuss your care needs.",
         "primary_caregiver": "Primary Caregiver",
         "phone_number": "Phone Number",
-        "location": "Location"
+        "location": "Location",
+        "coming_soon": "Coming Soon"
       }
     }
   },
@@ -180,7 +181,8 @@ const resources = {
         "subtitle": "إحنا دايماً معاك وفي خدمتك.. كلمنا في أي وقت.",
         "primary_caregiver": "الممرض المسؤول",
         "phone_number": "رقم التليفون",
-        "location": "العنوان"
+        "location": "العنوان",
+        "coming_soon": "قريباً"
       }
     }
   }

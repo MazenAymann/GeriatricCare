@@ -78,10 +78,11 @@ const Contact = () => {
         </div>
 
         <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))', 
+          maxWidth: '800px',
+          margin: '0 auto',
+          display: 'flex', 
+          flexDirection: 'column',
           gap: '4rem',
-          alignItems: 'center'
         }}>
           
           {/* Contact Details Column */}
@@ -212,7 +213,6 @@ const Contact = () => {
             <motion.div 
               variants={itemVariants} 
               whileHover={{ scale: 1.03, y: -5, boxShadow: '0 20px 40px var(--card-hover-shadow)' }} 
-              onClick={() => window.open(`https://maps.google.com/maps?q=${info.mapQuery}`, '_blank', 'noopener,noreferrer')}
               style={{ 
                 background: 'var(--glass-bg)', 
                 backdropFilter: 'blur(20px)',
@@ -223,7 +223,6 @@ const Contact = () => {
                 flexWrap: 'wrap',
                 alignItems: 'center', 
                 gap: 'clamp(1rem, 4vw, 1.5rem)', 
-                cursor: 'pointer',
                 transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
               }}
             >
@@ -232,90 +231,13 @@ const Contact = () => {
               </div>
               <div style={{ flex: '1 1 150px' }}>
                 <h4 style={{ color: 'var(--text-secondary)', marginBottom: '0.25rem', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.875rem', fontWeight: '600' }}>{t('contact.location')}</h4>
-                <p style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--secondary-color)', marginBottom: '0.25rem', lineHeight: '1.4' }}>{info.address}</p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-color)', fontSize: '0.875rem', fontWeight: '600' }}>
-                  <Navigation size={14} />
-                  <span dir="ltr">{info.coordinates}</span>
-                </div>
+                <p style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--secondary-color)', marginBottom: '0', lineHeight: '1.4' }}>{t('contact.coming_soon')}</p>
               </div>
             </motion.div>
 
           </motion.div>
           
-          {/* Map Column */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9, y: 50 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.2, type: "spring", stiffness: 40 }}
-            style={{ 
-              height: '100%',
-              minHeight: '450px',
-              position: 'relative'
-            }}
-          >
-            {/* Map Glow */}
-            <div style={{
-              position: 'absolute',
-              inset: '-10px',
-              background: 'linear-gradient(135deg, var(--primary-light), var(--primary-color))',
-              filter: 'blur(30px)',
-              opacity: 0.3,
-              borderRadius: '40px',
-              zIndex: 0
-            }}></div>
 
-            <div style={{ 
-              width: '100%', 
-              height: '100%', 
-              borderRadius: '32px', 
-              overflow: 'hidden', 
-              boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)',
-              position: 'relative',
-              background: 'var(--map-border)',
-              border: '10px solid var(--map-border)',
-              zIndex: 1
-            }}>
-              <iframe 
-                src={`https://maps.google.com/maps?q=${info.mapQuery}&t=&z=16&ie=UTF8&iwloc=&output=embed`}
-                width="100%" 
-                height="100%" 
-                style={{ border: 0, minHeight: '450px', filter: 'contrast(1.1) saturation(1.1)' }} 
-                allowFullScreen="" 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade">
-              </iframe>
-              
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                onClick={() => window.open(`https://maps.google.com/maps?q=${info.mapQuery}`, '_blank', 'noopener,noreferrer')}
-                style={{
-                  position: 'absolute',
-                  bottom: '1.5rem',
-                  insetInlineEnd: '1.5rem',
-                  background: 'var(--glass-bg)',
-                  padding: '1rem 2rem',
-                  borderRadius: '9999px',
-                  backdropFilter: 'blur(10px)',
-                  boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.75rem',
-                  fontWeight: '700',
-                  color: 'var(--primary-color)',
-                  cursor: 'pointer'
-                }}
-              >
-                {t('contact.location')}
-                <motion.div
-                  animate={{ x: isRTL ? [-5, 0, -5] : [5, 0, 5] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  <ArrowRight size={20} strokeWidth={3} style={{ transform: isRTL ? 'rotate(180deg)' : 'none' }} />
-                </motion.div>
-              </motion.div>
-            </div>
-          </motion.div>
 
         </div>
       </div>
