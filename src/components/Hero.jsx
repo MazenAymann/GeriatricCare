@@ -152,7 +152,7 @@ const Hero = () => {
                 backdropFilter: 'blur(10px)',
                 display: 'flex', flexDirection: 'column', alignItems: 'center'
               }}>
-                <span style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--primary-color)', lineHeight: 1 }}>{stat.num}</span>
+                <span dir="ltr" style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--primary-color)', lineHeight: 1 }}>{stat.num}</span>
                 <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: '600', marginTop: '0.25rem', textAlign: 'center' }}>{stat.label}</span>
               </div>
             ))}
