@@ -139,7 +139,7 @@ const Hero = () => {
             style={{ display: 'flex', gap: '1rem', marginTop: '3.5rem', flexWrap: 'wrap' }}
           >
             {[
-              { num: `+${Math.max(1, new Date().getFullYear() - 2026 + 1)}`, label: i18n.language === 'ar' ? 'سنوات خبرة' : 'Years Exp.' },
+              { num: `+${Math.max(1, new Date().getFullYear() - 2016)}`, label: i18n.language === 'ar' ? 'سنوات خبرة' : 'Years Exp.' },
               { num: '24/7', label: i18n.language === 'ar' ? 'رعاية مستمرة' : 'Care Available' },
               { num: '100%', label: i18n.language === 'ar' ? 'اهتمام شخصي' : 'Personal Attention' },
               { num: '5★', label: i18n.language === 'ar' ? 'خدمة موثوقة' : 'Trusted Service' }
