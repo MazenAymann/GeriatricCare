@@ -6,7 +6,8 @@ const resources = {
     translation: {
       "seo": {
         "title": "Birr for Home Nursing and Elderly Care",
-        "description": "Compassionate, 24/7 in-home geriatric nursing, medication management, and post-surgery recovery by Abdullah Samir in Almanial, Cairo. Phone: 01115276605 / 01095071065."
+        "description": "Compassionate, 24/7 in-home geriatric nursing, medication management, and post-surgery recovery by Abdullah Samir in Almanial, Cairo. Phone: 01115276605 / 01095071065.",
+        "keywords": "home nursing, elderly care, geriatric care, home health care, Cairo, Almanial, at-home doctor visit, home physiotherapy, IV fluids at home, urinary catheter installation, home X-ray, post-surgery recovery, senior care, Abdullah Samir"
       },
       "app": {
         "title": "Birr for Home Nursing and Elderly Care",
@@ -96,7 +97,8 @@ const resources = {
     translation: {
       "seo": {
         "title": "بر للتمريض المنزلي ورعايه المسنين بالمنزل",
-        "description": "بر للتمريض المنزلي هو مركز متخصص في مجال الرعاية الصحية والطبية المنزلية، حيث يقدم أفضل خدمات التمريض المنزلي ورعاية كبار السن بالمنزل. نقدم خدمات الرعاية المنزلية المحترفة والمخصصة 24 ساعة، مع طاقم تمريض متخصص ومدرب على التعامل مع جميع الحالات باحترافية."
+        "description": "بر للتمريض المنزلي هو مركز متخصص في مجال الرعاية الصحية والطبية المنزلية، حيث يقدم أفضل خدمات التمريض المنزلي ورعاية كبار السن بالمنزل. نقدم خدمات الرعاية المنزلية المحترفة والمخصصة 24 ساعة، مع طاقم تمريض متخصص ومدرب على التعامل مع جميع الحالات باحترافية.",
+        "keywords": "تمريض منزلي, رعاية مسنين بالمنزل, دكتور كشف منزلي, علاج طبيعي بالمنزل, تركيب كانيولا, تعليق محاليل, تركيب قسطرة بولية, أشعة منزلية, رعاية كبار السن, المنيل, القاهرة, عبدالله سمير, رعاية صحية منزلية, جليس مسنين"
       },
       "app": {
         "title": "بر للتمريض المنزلي ورعايه المسنين بالمنزل",

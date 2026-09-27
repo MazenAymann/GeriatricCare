@@ -65,6 +65,7 @@ function App() {
         <html lang={i18n.language} dir={i18n.language === 'ar' ? 'rtl' : 'ltr'} />
         <title>{t('seo.title')}</title>
         <meta name="description" content={t('seo.description')} />
+        <meta name="keywords" content={t('seo.keywords')} />
         
         {/* Open Graph Tags for Social Media Sharing */}
         <meta property="og:title" content={t('seo.title')} />
