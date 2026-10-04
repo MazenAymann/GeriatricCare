@@ -71,18 +71,18 @@ function App() {
         <meta property="og:title" content={t('seo.title')} />
         <meta property="og:description" content={t('seo.description')} />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Birr" />
+        <meta property="og:site_name" content={t('app.title')} />
         <meta property="og:locale" content={i18n.language === 'ar' ? 'ar_EG' : 'en_US'} />
-        <meta property="og:image" content="https://geriatriccare.vercel.app/logo.jpg" />
+        <meta property="og:image" content="https://birr-care.vercel.app/logo.jpg" />
         
         <script type="application/ld+json">
           {`
             {
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "name": "Birr",
+              "name": "${t('app.title')}",
               "alternateName": ["بر للتمريض المنزلي", "Birr Care", "Birr Home Nursing"],
-              "url": "https://geriatriccare.vercel.app/"
+              "url": "https://birr-care.vercel.app/"
             }
           `}
         </script>
