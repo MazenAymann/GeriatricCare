@@ -3,161 +3,123 @@ import { useSelector } from 'react-redux';
 import { selectContactInfo } from '../store/appSlice';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, HeartPulse, ShieldCheck, PhoneCall } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+const ease = [0.16, 1, 0.3, 1];
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+  transition: { delay, duration: 0.8, ease }
+});
+
 const Hero = () => {
-  const { name } = useSelector(selectContactInfo);
-  const { t, i18n } = useTranslation();
-  const isRTL = i18n.language === 'ar';
+  const { phones = [] } = useSelector(selectContactInfo);
+  const { t } = useTranslation();
+
+  const stats = [
+    { num: `+${Math.max(1, new Date().getFullYear() - 2016)}`, label: t('hero.stat_years') },
+    { num: '24/7', label: t('hero.stat_available') },
+    { num: '100%', label: t('hero.stat_personal') },
+    { num: '5★', label: t('hero.stat_trusted') }
+  ];
 
   return (
-    <section style={{ 
-      minHeight: '100vh', 
-      display: 'flex', 
-      alignItems: 'center',
-      background: 'var(--hero-bg)',
-      backgroundSize: '400% 400%',
-      animation: 'gradientBG 15s ease infinite',
-      position: 'relative',
-      overflow: 'hidden'
-    }}>
+    <section className="hero">
+      <div className="hero-bg" aria-hidden="true" />
 
-      {/* Orb 1 */}
-      <div style={{
-        position: 'absolute', top: '-10%', insetInlineStart: '-5%',
-        width: '600px', height: '600px', borderRadius: '50%',
-        background: 'radial-gradient(circle, var(--orb-1) 0%, transparent 65%)',
-        filter: 'blur(50px)', zIndex: 0,
-        animation: 'floatOrb 8s ease-in-out infinite'
-      }}></div>
+      <div className="container hero-grid">
+        <div className="hero-copy">
+          <motion.span className="eyebrow" {...fadeUp(0)}>
+            <span className="eyebrow-dot" />
+            {t('hero.badge')}
+          </motion.span>
 
-      {/* Orb 2 */}
-      <div style={{
-        position: 'absolute', bottom: '-20%', insetInlineEnd: '-10%',
-        width: '700px', height: '700px', borderRadius: '50%',
-        background: 'radial-gradient(circle, var(--orb-2) 0%, transparent 65%)',
-        filter: 'blur(60px)', zIndex: 0,
-        animation: 'floatOrb 12s ease-in-out infinite reverse'
-      }}></div>
-
-      {/* Subtle dot grid pattern */}
-      <div style={{
-        position: 'absolute', inset: 0, zIndex: 0,
-        backgroundImage: 'radial-gradient(circle, var(--divider) 1px, transparent 1px)',
-        backgroundSize: '40px 40px',
-        opacity: 0.5
-      }}></div>
-
-      <div className="container" style={{ position: 'relative', zIndex: 1, padding: '4rem 2rem' }}>
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: '1fr',
-          maxWidth: '800px',
-          marginInlineStart: '0',
-          marginInlineEnd: 'auto'
-        }}>
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="section-badge">
-              <Sparkles size={14} />
-              {i18n.language === 'ar' ? 'رعاية المسنين المتخصصة' : 'Specialized Geriatric Care'}
-            </span>
-          </motion.div>
-
-          {/* Heading */}
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            style={{ fontSize: 'clamp(2.75rem, 6vw, 5rem)', marginBottom: '1.5rem', color: 'var(--secondary-color)', letterSpacing: '-0.03em', fontWeight: '800', lineHeight: 1.08 }}
-          >
+          <motion.h1 {...fadeUp(0.1)}>
             {t('hero.compassionate')}{' '}
             <span className="text-gradient">{t('hero.geriatric_care')}</span>{' '}
             {t('hero.trust')}
           </motion.h1>
 
-          {/* Description */}
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', marginBottom: '2.5rem', maxWidth: '580px', lineHeight: '1.85' }}
-          >
+          <motion.p className="hero-lead" {...fadeUp(0.2)}>
             {t('hero.description', { name: t('contact.caregiver_name') })}
           </motion.p>
 
-          {/* CTA Row */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45, duration: 0.8 }}
-            style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}
-          >
-            <Link to="/#contact" style={{ textDecoration: 'none' }}>
-              <motion.div
-                className="btn-primary"
-                whileHover={{ scale: 1.04, y: -2 }}
-                whileTap={{ scale: 0.97 }}
-                style={{ fontSize: '1.05rem', padding: '0.95rem 2.25rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
-              >
-                {t('hero.get_in_touch')}
-                <ArrowRight size={18} strokeWidth={2.5} style={{ transform: isRTL ? 'rotate(180deg)' : 'none' }} />
-              </motion.div>
+          <motion.div className="hero-actions" {...fadeUp(0.3)}>
+            <Link to="/#contact" className="btn btn-primary">
+              {t('hero.get_in_touch')}
+              <ArrowRight size={18} strokeWidth={2.5} className="btn-arrow flip-rtl" />
             </Link>
-
-            <Link to="/#services" style={{ textDecoration: 'none' }}>
-              <motion.div
-                whileHover={{ scale: 1.04, y: -2 }}
-                whileTap={{ scale: 0.97 }}
-                style={{ 
-                  display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                  fontSize: '1.05rem', padding: '0.95rem 2.25rem',
-                  background: 'var(--glass-bg)', 
-                  color: 'var(--primary-color)', 
-                  border: '1.5px solid var(--badge-border)',
-                  borderRadius: '9999px',
-                  fontWeight: '600',
-                  backdropFilter: 'blur(12px)',
-                  transition: 'all 0.3s ease'
-                }}
-              >
-                {t('hero.our_services')}
-              </motion.div>
+            <Link to="/#services" className="btn btn-ghost">
+              {t('hero.our_services')}
             </Link>
           </motion.div>
 
-          {/* Stat pills */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            style={{ display: 'flex', gap: '1rem', marginTop: '3.5rem', flexWrap: 'wrap' }}
-          >
-            {[
-              { num: `+${Math.max(1, new Date().getFullYear() - 2016)}`, label: i18n.language === 'ar' ? 'سنوات خبرة' : 'Years Exp.' },
-              { num: '24/7', label: i18n.language === 'ar' ? 'رعاية مستمرة' : 'Care Available' },
-              { num: '100%', label: i18n.language === 'ar' ? 'اهتمام شخصي' : 'Personal Attention' },
-              { num: '5★', label: i18n.language === 'ar' ? 'خدمة موثوقة' : 'Trusted Service' }
-            ].map((stat) => (
-              <div className="stat-pill" key={stat.num} style={{
-                padding: '0.75rem 1.5rem',
-                background: 'var(--glass-bg)',
-                border: '1px solid var(--glass-border)',
-                borderRadius: '16px',
-                backdropFilter: 'blur(10px)',
-                display: 'flex', flexDirection: 'column', alignItems: 'center'
-              }}>
-                <span dir="ltr" style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--primary-color)', lineHeight: 1 }}>{stat.num}</span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: '600', marginTop: '0.25rem', textAlign: 'center' }}>{stat.label}</span>
+          <motion.dl className="stats" {...fadeUp(0.4)}>
+            {stats.map((stat) => (
+              <div className="stat" key={stat.num}>
+                <dt className="stat-label">{stat.label}</dt>
+                <dd className="stat-num ltr">{stat.num}</dd>
               </div>
             ))}
-          </motion.div>
+          </motion.dl>
         </div>
+
+        <motion.div
+          className="hero-visual"
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2, duration: 1, ease }}
+        >
+          <div className="hero-ring" aria-hidden="true" />
+          <div className="hero-blob" aria-hidden="true" />
+          <div className="hero-frame">
+            <img src="/logo.jpg" alt={t('app.title')} />
+          </div>
+
+          <motion.div
+            className="float-chip chip-a"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: [0, -8, 0] }}
+            transition={{ opacity: { delay: 0.6, duration: 0.6 }, y: { delay: 0.6, duration: 6, repeat: Infinity, ease: 'easeInOut' } }}
+          >
+            <span className="chip-icon accent"><HeartPulse size={19} strokeWidth={2.25} /></span>
+            <div>
+              <strong>{t('hero.chip_monitoring')}</strong>
+              <span>{t('hero.chip_monitoring_sub')}</span>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="float-chip chip-b"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: [0, 8, 0] }}
+            transition={{ opacity: { delay: 0.75, duration: 0.6 }, y: { delay: 0.75, duration: 7, repeat: Infinity, ease: 'easeInOut' } }}
+          >
+            <span className="chip-icon leaf"><ShieldCheck size={19} strokeWidth={2.25} /></span>
+            <div>
+              <strong>{t('hero.chip_certified')}</strong>
+              <span>{t('hero.chip_certified_sub')}</span>
+            </div>
+          </motion.div>
+
+          {phones[0] && (
+            <motion.a
+              href={`tel:${phones[0]}`}
+              className="float-chip chip-c"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: [0, -6, 0] }}
+              transition={{ opacity: { delay: 0.9, duration: 0.6 }, y: { delay: 0.9, duration: 5.5, repeat: Infinity, ease: 'easeInOut' } }}
+            >
+              <span className="chip-icon brand"><PhoneCall size={19} strokeWidth={2.25} /></span>
+              <div>
+                <strong>{t('app.call_now')}</strong>
+                <span className="ltr" style={{ display: 'block' }}>{phones[0]}</span>
+              </div>
+            </motion.a>
+          )}
+        </motion.div>
       </div>
     </section>
   );

@@ -13,7 +13,14 @@ const resources = {
         "title": "Birr for Home Nursing and Elderly Care",
         "services": "Services",
         "contact": "Contact",
-        "rights": "Geriatric Care by Abdullah Samir. All rights reserved."
+        "rights": "Geriatric Care by Abdullah Samir. All rights reserved.",
+        "brand": "Birr",
+        "tagline": "Home Nursing & Elderly Care",
+        "call_now": "Call Now",
+        "toggle_theme": "Toggle dark mode",
+        "home": "Home",
+        "quick_links": "Quick Links",
+        "footer_about": "Professional nursing and elderly care delivered with compassion, safety, and respect — in the comfort of home."
       },
       "hero": {
         "compassionate": "Compassionate",
@@ -21,11 +28,25 @@ const resources = {
         "trust": "You Can Trust",
         "description": "Professional, dedicated nursing services by {{name}}. Providing round-the-clock comfort, safety, and specialized care for your loved ones in the comfort of their home.",
         "get_in_touch": "Get in Touch",
-        "our_services": "Our Services"
+        "our_services": "Our Services",
+        "badge": "Available 24/7 · Cairo",
+        "stat_years": "Years of experience",
+        "stat_available": "Care available",
+        "stat_personal": "Personal attention",
+        "stat_trusted": "Trusted service",
+        "chip_monitoring": "24/7 Monitoring",
+        "chip_monitoring_sub": "Vitals & medication",
+        "chip_certified": "Qualified Nurses",
+        "chip_certified_sub": "Trained & experienced"
       },
       "services": {
         "title": "Our Specialized Services",
         "subtitle": "Tailored geriatric nursing care designed to promote independence, health, and well-being.",
+        "eyebrow": "What We Offer",
+        "learn_more": "Learn more",
+        "cta_title": "Not sure what you need?",
+        "cta_desc": "Tell us about your loved one and we'll recommend the right care plan.",
+        "cta_button": "Talk to us",
         "s_nursing_title": "Home Nursing",
         "s_nursing_desc": "Professional nursing care in the comfort of your home.",
         "s_nursing_points": [
@@ -90,7 +111,20 @@ const resources = {
         "primary_caregiver": "Primary Caregiver",
         "phone_number": "Phone Number",
         "location": "Location",
-        "coming_soon": "Coming Soon"
+        "coming_soon": "Coming Soon",
+        "eyebrow": "We're here for you",
+        "call": "Call",
+        "hours": "Working Hours",
+        "hours_value": "24 hours, 7 days a week"
+      },
+      "detail": {
+        "back": "Back to Services",
+        "included": "What's included",
+        "book": "Book this service",
+        "book_desc": "Call or message us and we'll arrange a visit at a time that suits you.",
+        "other": "Other services",
+        "not_found": "Service not found",
+        "go_home": "Go back home"
       }
     }
   },
@@ -105,7 +139,14 @@ const resources = {
         "title": "بر للتمريض المنزلي ورعايه المسنين بالمنزل",
         "services": "خدماتنا",
         "contact": "كلمنا",
-        "rights": "رعاية المسنين مع عبدالله سمير. كل الحقوق محفوظة."
+        "rights": "رعاية المسنين مع عبدالله سمير. كل الحقوق محفوظة.",
+        "brand": "بر",
+        "tagline": "للتمريض المنزلي ورعاية المسنين",
+        "call_now": "اتصل بينا",
+        "toggle_theme": "تغيير الوضع الليلي",
+        "home": "الرئيسية",
+        "quick_links": "روابط سريعة",
+        "footer_about": "تمريض ورعاية مسنين باحترافية وأمان واحترام.. وانت مطمن في بيتك."
       },
       "hero": {
         "compassionate": "رعاية مسنين",
@@ -113,11 +154,25 @@ const resources = {
         "trust": "تطمن بيها على الغاليين",
         "description": "تمريض ممتاز واهتمام شخصي مع {{name}}. بنوفرلك الراحة، الأمان، ورعاية 24 ساعة للغاليين عليك وهمّا في بيتهم.",
         "get_in_touch": "كلمنا دلوقتي",
-        "our_services": "إيه اللي بنقدمه"
+        "our_services": "إيه اللي بنقدمه",
+        "badge": "متاحين 24 ساعة · القاهرة",
+        "stat_years": "سنين خبرة",
+        "stat_available": "رعاية مستمرة",
+        "stat_personal": "اهتمام شخصي",
+        "stat_trusted": "خدمة موثوقة",
+        "chip_monitoring": "متابعة 24 ساعة",
+        "chip_monitoring_sub": "علامات حيوية وأدوية",
+        "chip_certified": "تمريض مؤهل",
+        "chip_certified_sub": "مدرب وعنده خبرة"
       },
       "services": {
         "title": "خدماتنا المتميزة",
         "subtitle": "رعاية تمريضية متفصلة عشان صحة وراحة الغاليين عليك.",
+        "eyebrow": "ما نقدمه",
+        "learn_more": "اعرف أكثر",
+        "cta_title": "مش متأكد محتاج إيه؟",
+        "cta_desc": "احكيلنا عن حالة الغالي عليك وإحنا نرشحلك الرعاية المناسبة.",
+        "cta_button": "كلمنا",
         "s_nursing_title": "تمريض منزلي",
         "s_nursing_desc": "تمريض احترافي وعناية طبية شاملة للمريض في راحة بيته.",
         "s_nursing_points": [
@@ -182,7 +237,20 @@ const resources = {
         "primary_caregiver": "الممرض المسؤول",
         "phone_number": "رقم التليفون",
         "location": "العنوان",
-        "coming_soon": "قريباً"
+        "coming_soon": "قريباً",
+        "eyebrow": "إحنا معاك",
+        "call": "اتصال",
+        "hours": "مواعيد العمل",
+        "hours_value": "24 ساعة طول أيام الأسبوع"
+      },
+      "detail": {
+        "back": "الرجوع للخدمات",
+        "included": "الخدمة بتشمل إيه",
+        "book": "احجز هذه الخدمة",
+        "book_desc": "كلمنا أو ابعتلنا واتساب ونرتبلك الزيارة في الميعاد اللي يناسبك.",
+        "other": "خدمات تانية",
+        "not_found": "الخدمة غير موجودة",
+        "go_home": "الرجوع للرئيسية"
       }
     }
   }

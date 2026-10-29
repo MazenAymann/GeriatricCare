@@ -1,245 +1,100 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectContactInfo } from '../store/appSlice';
-import { Phone, MapPin, User, Navigation, ArrowRight, MessageCircle } from 'lucide-react';
+import { Phone, MapPin, Clock, MessageCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 
+const ease = [0.16, 1, 0.3, 1];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.15 } }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease } }
+};
+
 const Contact = () => {
   const info = useSelector(selectContactInfo);
-  const { t, i18n } = useTranslation();
-  const isRTL = i18n.language === 'ar';
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: isRTL ? 40 : -40, filter: 'blur(10px)' },
-    show: { opacity: 1, x: 0, filter: 'blur(0px)', transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } }
-  };
+  const { t } = useTranslation();
+  const caregiver = t('contact.caregiver_name');
 
   return (
-    <section id="contact" className="section" style={{ 
-      background: 'var(--contact-bg)',
-      position: 'relative',
-      padding: '8rem 0',
-      overflow: 'hidden'
-    }}>
-      {/* Decorative Orbs */}
-      <div style={{
-        position: 'absolute',
-        top: '10%',
-        left: '-10%',
-        width: '500px',
-        height: '500px',
-        background: 'radial-gradient(circle, rgba(13, 148, 136, 0.15) 0%, rgba(13, 148, 136, 0) 70%)',
-        filter: 'blur(60px)',
-        zIndex: 0,
-        animation: 'floatOrb 10s ease-in-out infinite'
-      }}></div>
-      
-      <div style={{
-        position: 'absolute',
-        bottom: '-10%',
-        right: '-5%',
-        width: '400px',
-        height: '400px',
-        background: 'radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0) 70%)',
-        filter: 'blur(50px)',
-        zIndex: 0,
-        animation: 'floatOrb 12s ease-in-out infinite reverse'
-      }}></div>
+    <section id="contact" className="section" style={{ paddingTop: 0 }}>
+      <div className="container">
+        <motion.div
+          className="contact-panel"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.9, ease }}
+        >
+          <div className="contact-intro">
+            <span className="eyebrow">
+              <span className="eyebrow-dot" />
+              {t('contact.eyebrow')}
+            </span>
+            <h2>{t('contact.title')}</h2>
+            <p>{t('contact.subtitle')}</p>
 
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            style={{ fontSize: '3.5rem', marginBottom: '1rem', color: 'var(--secondary-color)', letterSpacing: '-0.03em', fontWeight: '800' }}
-          >
-            {t('contact.title')}
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-            style={{ color: 'var(--text-secondary)', fontSize: '1.25rem', maxWidth: '600px', margin: '0 auto', lineHeight: '1.8' }}
-          >
-            {t('contact.subtitle')}
-          </motion.p>
-        </div>
+            <div className="caregiver">
+              <span className="caregiver-avatar" aria-hidden="true">{caregiver.charAt(0)}</span>
+              <div>
+                <small>{t('contact.primary_caregiver')}</small>
+                <strong>{caregiver}</strong>
+              </div>
+            </div>
+          </div>
 
-        <div style={{ 
-          maxWidth: '800px',
-          margin: '0 auto',
-          display: 'flex', 
-          flexDirection: 'column',
-          gap: '4rem',
-        }}>
-          
-          {/* Contact Details Column */}
-          <motion.div 
+          <motion.div
+            className="contact-cards"
             variants={containerVariants}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}
           >
-            {/* Caregiver Card */}
-            <motion.div 
-              variants={itemVariants} 
-              whileHover={{ scale: 1.03, y: -5, boxShadow: '0 20px 40px var(--card-hover-shadow)' }} 
-              style={{ 
-                background: 'var(--glass-bg)', 
-                backdropFilter: 'blur(20px)',
-                borderRadius: '24px',
-                border: '1px solid var(--glass-border)',
-                padding: 'clamp(1.25rem, 5vw, 2rem)', 
-                display: 'flex', 
-                flexWrap: 'wrap',
-                alignItems: 'center', 
-                gap: 'clamp(1rem, 4vw, 1.5rem)', 
-                cursor: 'pointer',
-                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
-              }}
-            >
-              <div style={{ width: '70px', height: '70px', borderRadius: '20px', background: 'linear-gradient(135deg, var(--primary-light), var(--primary-color))', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 10px 25px rgba(13, 148, 136, 0.3)' }}>
-                <User size={32} color="#fff" strokeWidth={2.5} />
-              </div>
-              <div style={{ flex: '1 1 150px' }}>
-                <h4 style={{ fontSize: '1.125rem', color: 'var(--text-secondary)', marginBottom: '0.25rem', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.875rem', fontWeight: '600' }}>{t('contact.primary_caregiver')}</h4>
-                <p style={{ fontSize: '1.75rem', fontWeight: '800', color: 'var(--secondary-color)', letterSpacing: '-0.02em' }}>{t('contact.caregiver_name')}</p>
-              </div>
-            </motion.div>
-
-            {/* Phone Card */}
-            <motion.div 
-              variants={itemVariants} 
-              whileHover={{ scale: 1.02, y: -5, boxShadow: '0 20px 40px var(--card-hover-shadow)' }} 
-              style={{ 
-                background: 'var(--glass-bg)', 
-                backdropFilter: 'blur(20px)',
-                borderRadius: '24px',
-                border: '1px solid var(--glass-border)',
-                padding: 'clamp(1.25rem, 5vw, 2rem)', 
-                display: 'flex', 
-                flexWrap: 'wrap',
-                alignItems: 'flex-start', 
-                gap: 'clamp(1rem, 4vw, 1.5rem)' 
-              }}
-            >
-              <motion.div 
-                animate={{ rotate: [0, -10, 10, -10, 10, 0] }}
-                transition={{ duration: 0.5, delay: 2, repeat: Infinity, repeatDelay: 5 }}
-                style={{ width: '70px', height: '70px', borderRadius: '20px', background: 'linear-gradient(135deg, #1e293b, #0f172a)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 10px 25px rgba(15, 23, 42, 0.4)' }}
-              >
-                <Phone size={32} color="#fff" strokeWidth={2.5} />
-              </motion.div>
-              <div style={{ flex: '1 1 150px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <h4 style={{ color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.875rem', fontWeight: '600' }}>{t('contact.phone_number')}</h4>
-                
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '1rem' }}>
-                  {info.phones && info.phones.map((phone, idx) => (
-                    <motion.div 
-                      key={idx} 
-                      whileHover={{ scale: 1.03, backgroundColor: 'var(--badge-bg)' }}
-                      style={{ 
-                        background: 'rgba(255,255,255,0.02)', 
-                        border: '1px solid var(--glass-border)',
-                        borderRadius: '16px', 
-                        padding: 'clamp(1rem, 4vw, 1.25rem)',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '1rem',
-                        position: 'relative',
-                        overflow: 'hidden',
-                        transition: 'background-color 0.3s ease'
-                      }}
-                    >
-                      {/* Sub-bg glow */}
-                      <div style={{ position: 'absolute', top: '-50%', right: '-50%', width: '100px', height: '100px', background: 'var(--primary-color)', filter: 'blur(40px)', opacity: 0.1, zIndex: 0 }}></div>
-                      
-                      <div style={{ position: 'relative', zIndex: 1 }}>
-                        <a href={`tel:${phone}`} dir="ltr" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: 'clamp(1.15rem, 5vw, 1.4rem)', fontWeight: '800', color: 'var(--secondary-color)', textDecoration: 'none', letterSpacing: '-0.02em', transition: 'color 0.2s ease', wordBreak: 'break-word' }}
-                        onMouseEnter={e => e.currentTarget.style.color = 'var(--primary-color)'}
-                        onMouseLeave={e => e.currentTarget.style.color = 'var(--secondary-color)'}
-                        >
-                          {phone}
-                        </a>
-                      </div>
-
-                      <div style={{ position: 'relative', zIndex: 1 }}>
-                        <motion.a 
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          href={`https://wa.me/2${phone}`} 
-                          target="_blank" 
-                          rel="noreferrer" 
-                          style={{
-                            display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                            background: 'linear-gradient(135deg, rgba(37, 211, 102, 0.15), rgba(18, 140, 126, 0.15))', 
-                            border: '1px solid rgba(37, 211, 102, 0.3)',
-                            color: '#25D366', 
-                            padding: '0.6rem 1rem', 
-                            borderRadius: '12px',
-                            textDecoration: 'none', 
-                            fontSize: '0.875rem', 
-                            fontWeight: '700',
-                            width: '100%',
-                            transition: 'all 0.3s ease'
-                          }}
-                          onMouseEnter={e => { e.currentTarget.style.background = '#25D366'; e.currentTarget.style.color = '#fff'; }}
-                          onMouseLeave={e => { e.currentTarget.style.background = 'linear-gradient(135deg, rgba(37, 211, 102, 0.15), rgba(18, 140, 126, 0.15))'; e.currentTarget.style.color = '#25D366'; }}
-                        >
-                          <MessageCircle size={18} strokeWidth={2.5} />
-                          WhatsApp
-                        </motion.a>
-                      </div>
-                    </motion.div>
-                  ))}
+            {info.phones && info.phones.map((phone) => (
+              <motion.div key={phone} className="contact-card" variants={itemVariants}>
+                <span className="contact-card-icon"><Phone size={22} strokeWidth={2} /></span>
+                <div className="contact-card-body">
+                  <small>{t('contact.phone_number')}</small>
+                  <a href={`tel:${phone}`} className="ltr">{phone}</a>
                 </div>
-              </div>
-            </motion.div>
+                <div className="contact-card-actions">
+                  <a href={`tel:${phone}`} className="btn btn-ghost btn-sm">
+                    <Phone size={15} strokeWidth={2.5} />
+                    {t('contact.call')}
+                  </a>
+                  <a href={`https://wa.me/2${phone}`} target="_blank" rel="noreferrer" className="btn btn-whatsapp btn-sm">
+                    <MessageCircle size={15} strokeWidth={2.5} />
+                    WhatsApp
+                  </a>
+                </div>
+              </motion.div>
+            ))}
 
-            {/* Location Card */}
-            <motion.div 
-              variants={itemVariants} 
-              whileHover={{ scale: 1.03, y: -5, boxShadow: '0 20px 40px var(--card-hover-shadow)' }} 
-              style={{ 
-                background: 'var(--glass-bg)', 
-                backdropFilter: 'blur(20px)',
-                borderRadius: '24px',
-                border: '1px solid var(--glass-border)',
-                padding: 'clamp(1.25rem, 5vw, 2rem)', 
-                display: 'flex', 
-                flexWrap: 'wrap',
-                alignItems: 'center', 
-                gap: 'clamp(1rem, 4vw, 1.5rem)', 
-                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
-              }}
-            >
-              <div style={{ width: '70px', height: '70px', borderRadius: '20px', background: 'linear-gradient(135deg, #f59e0b, #b45309)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 10px 25px rgba(245, 158, 11, 0.3)' }}>
-                <MapPin size={32} color="#fff" strokeWidth={2.5} />
-              </div>
-              <div style={{ flex: '1 1 150px' }}>
-                <h4 style={{ color: 'var(--text-secondary)', marginBottom: '0.25rem', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.875rem', fontWeight: '600' }}>{t('contact.location')}</h4>
-                <p style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--secondary-color)', marginBottom: '0', lineHeight: '1.4' }}>{t('contact.coming_soon')}</p>
-              </div>
-            </motion.div>
+            <div className="contact-meta">
+              <motion.div className="contact-card" variants={itemVariants}>
+                <span className="contact-card-icon"><Clock size={22} strokeWidth={2} /></span>
+                <div className="contact-card-body">
+                  <small>{t('contact.hours')}</small>
+                  <strong>{t('contact.hours_value')}</strong>
+                </div>
+              </motion.div>
 
+              <motion.div className="contact-card" variants={itemVariants}>
+                <span className="contact-card-icon"><MapPin size={22} strokeWidth={2} /></span>
+                <div className="contact-card-body">
+                  <small>{t('contact.location')}</small>
+                  <strong>{t('contact.coming_soon')}</strong>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
-          
-
-
-        </div>
+        </motion.div>
       </div>
     </section>
   );

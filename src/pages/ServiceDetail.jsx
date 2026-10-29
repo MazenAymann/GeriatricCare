@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectServices } from '../store/appSlice';
+import { selectServices, selectContactInfo } from '../store/appSlice';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Check, Phone, MessageCircle } from 'lucide-react';
+import { serviceIcons } from '../data/icons';
+
+const ease = [0.16, 1, 0.3, 1];
 
 const ServiceDetail = () => {
   const { id } = useParams();
   const services = useSelector(selectServices);
-  const { t, i18n } = useTranslation();
-  const isRTL = i18n.language === 'ar';
+  const { phones = [] } = useSelector(selectContactInfo);
+  const { t } = useTranslation();
 
   const service = services.find(s => s.id === id);
 
@@ -20,113 +23,107 @@ const ServiceDetail = () => {
 
   if (!service) {
     return (
-      <div style={{ padding: '8rem 2rem', textAlign: 'center', minHeight: '60vh' }}>
-        <h2 style={{ fontSize: '2rem', color: 'var(--text-primary)' }}>Service not found</h2>
-        <Link to="/" style={{ color: 'var(--primary-color)', marginTop: '1rem', display: 'inline-block' }}>Go back home</Link>
+      <div className="not-found">
+        <div>
+          <h2 style={{ fontSize: '2rem' }}>{t('detail.not_found')}</h2>
+          <Link to="/" className="btn btn-primary" style={{ marginTop: '1.5rem' }}>{t('detail.go_home')}</Link>
+        </div>
       </div>
     );
   }
 
-  const title = t(`services.s_${id}_title`);
-  const desc = t(`services.s_${id}_desc`);
+  const IconComp = serviceIcons[service.icon];
+  const points = t(`services.s_${id}_points`, { returnObjects: true });
+  const others = services.filter(s => s.id !== id);
 
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      style={{ padding: '6rem 0', minHeight: '80vh', backgroundColor: 'var(--hero-bg)' }}
-    >
-      <div className="container">
-        <Link to="/#services" style={{ 
-          display: 'inline-flex', alignItems: 'center', gap: '0.5rem', 
-          color: 'var(--text-secondary)', textDecoration: 'none', 
-          marginBottom: '2rem', fontWeight: '600', transition: 'color 0.2s' 
-        }}>
-          <ArrowLeft size={18} style={{ transform: isRTL ? 'rotate(180deg)' : 'none' }} />
-          {i18n.language === 'ar' ? 'الرجوع للخدمات' : 'Back to Services'}
-        </Link>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+      <section className="detail-hero">
+        <div className="hero-bg" aria-hidden="true" />
+        <div className="container">
+          <Link to="/#services" className="breadcrumb">
+            <ArrowLeft size={17} className="flip-rtl" />
+            {t('detail.back')}
+          </Link>
 
-        <div style={{
-          background: 'var(--glass-bg)',
-          backdropFilter: 'blur(20px)',
-          border: '1px solid var(--glass-border)',
-          borderRadius: '32px',
-          padding: 'clamp(2rem, 5vw, 4rem)',
-          boxShadow: '0 30px 60px rgba(0,0,0,0.1)'
-        }}>
-          <motion.h1 
+          <motion.div
+            className="detail-title"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.1 }}
-            style={{ 
-              fontSize: 'clamp(2rem, 5vw, 3.5rem)', 
-              color: 'var(--secondary-color)', 
-              fontWeight: '800',
-              marginBottom: '1.5rem',
-              letterSpacing: '-0.02em'
-            }}
+            transition={{ delay: 0.1, duration: 0.7, ease }}
           >
-            {title}
-          </motion.h1>
-
-          <motion.p 
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            style={{ 
-              fontSize: '1.25rem', 
-              color: 'var(--text-secondary)', 
-              lineHeight: '1.8',
-              maxWidth: '800px',
-              marginBottom: '3rem'
-            }}
-          >
-            {desc}
-          </motion.p>
-
-          <motion.div 
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '1rem',
-              marginBottom: '4rem'
-            }}
-          >
-            {t(`services.s_${id}_points`, { returnObjects: true }).map((point, index) => (
-              <div key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', color: 'var(--text-primary)' }}>
-                <div style={{ marginTop: '0.2rem', flexShrink: 0 }}>
-                  <CheckCircle2 color="var(--primary-color)" size={20} />
-                </div>
-                <span style={{ fontSize: '1.1rem', fontWeight: '500', lineHeight: '1.6' }}>
-                  {point}
-                </span>
-              </div>
-            ))}
+            <span className="service-icon">
+              {IconComp && <IconComp size={32} strokeWidth={2} />}
+            </span>
+            <h1>{t(`services.s_${id}_title`)}</h1>
           </motion.div>
 
-          <Link to="/#contact" style={{ textDecoration: 'none' }}>
-            <motion.div 
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="btn-primary"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                padding: '1rem 2.5rem',
-                fontSize: '1.1rem'
-              }}
-            >
-              {i18n.language === 'ar' ? 'احجز هذه الخدمة' : 'Book this Service'}
-              <ArrowRight size={20} style={{ transform: isRTL ? 'rotate(180deg)' : 'none' }} />
-            </motion.div>
-          </Link>
+          <motion.p
+            className="detail-lead"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.7, ease }}
+          >
+            {t(`services.s_${id}_desc`)}
+          </motion.p>
         </div>
+      </section>
+
+      <div className="container detail-body">
+        <div>
+          <h2>{t('detail.included')}</h2>
+          <ul className="points">
+            {points.map((point, index) => (
+              <motion.li
+                key={index}
+                className="point"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.25 + index * 0.08, duration: 0.6, ease }}
+              >
+                <span className="point-check"><Check size={18} strokeWidth={3} /></span>
+                {point}
+              </motion.li>
+            ))}
+          </ul>
+
+          <div className="other-services">
+            <h2>{t('detail.other')}</h2>
+            <div className="chips">
+              {others.map(s => {
+                const Icon = serviceIcons[s.icon];
+                return (
+                  <Link key={s.id} to={`/service/${s.id}`} className="chip-link">
+                    <span className="chip-icon brand">{Icon && <Icon size={15} strokeWidth={2.25} />}</span>
+                    {t(`services.s_${s.id}_title`)}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        <motion.aside
+          className="book-card"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.35, duration: 0.7, ease }}
+        >
+          <h3>{t('detail.book')}</h3>
+          <p>{t('detail.book_desc')}</p>
+          {phones[0] && (
+            <>
+              <a href={`tel:${phones[0]}`} className="btn btn-primary">
+                <Phone size={17} strokeWidth={2.5} />
+                <span className="ltr">{phones[0]}</span>
+              </a>
+              <a href={`https://wa.me/2${phones[0]}`} target="_blank" rel="noreferrer" className="btn btn-whatsapp">
+                <MessageCircle size={17} strokeWidth={2.5} />
+                WhatsApp
+              </a>
+            </>
+          )}
+        </motion.aside>
       </div>
     </motion.div>
   );

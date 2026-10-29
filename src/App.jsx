@@ -1,10 +1,12 @@
 import React, { useEffect, useState, Suspense, lazy } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Hero from './components/Hero';
-import { Heart, Globe, Moon, Sun } from 'lucide-react';
+import { Globe, Moon, Sun, Phone, MessageCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
+import { selectContactInfo } from './store/appSlice';
 
 const Services = lazy(() => import('./components/Services'));
 const Contact = lazy(() => import('./components/Contact'));
@@ -27,13 +29,29 @@ function ScrollToHashElement() {
   return null;
 }
 
+const FacebookIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+  </svg>
+);
+
+const InstagramIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </svg>
+);
+
 function App() {
   const { t, i18n } = useTranslation();
-  
-  // Theme state
+  const { phones = [] } = useSelector(selectContactInfo);
+  const primaryPhone = phones[0];
+
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('theme') || 'light';
   });
+  const [scrolled, setScrolled] = useState(false);
 
   const toggleLanguage = () => {
     const newLang = i18n.language === 'en' ? 'ar' : 'en';
@@ -58,213 +76,162 @@ function App() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', fontFamily: i18n.language === 'ar' ? 'Tajawal, Inter, sans-serif' : 'Inter, sans-serif' }}>
-      <ScrollToHashElement />
-      <Helmet>
-        <html lang={i18n.language} dir={i18n.language === 'ar' ? 'rtl' : 'ltr'} />
-        <title>{t('seo.title')}</title>
-        <meta name="description" content={t('seo.description')} />
-        <meta name="keywords" content={t('seo.keywords')} />
-        
-        {/* Open Graph Tags for Social Media Sharing */}
-        <meta property="og:title" content={t('seo.title')} />
-        <meta property="og:description" content={t('seo.description')} />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content={t('app.title')} />
-        <meta property="og:locale" content={i18n.language === 'ar' ? 'ar_EG' : 'en_US'} />
-        <meta property="og:image" content="https://birr-care.vercel.app/logo.jpg" />
-        
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              "name": "${t('app.title')}",
-              "alternateName": ["بر للتمريض المنزلي", "Birr Care", "Birr Home Nursing"],
-              "url": "https://birr-care.vercel.app/"
-            }
-          `}
-        </script>
-      </Helmet>
+    <MotionConfig reducedMotion="user">
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <ScrollToHashElement />
+        <Helmet>
+          <html lang={i18n.language} dir={i18n.language === 'ar' ? 'rtl' : 'ltr'} />
+          <title>{t('seo.title')}</title>
+          <meta name="description" content={t('seo.description')} />
+          <meta name="keywords" content={t('seo.keywords')} />
+          <meta name="theme-color" content={theme === 'dark' ? '#061816' : '#f6f8f7'} />
 
-      {/* Header */}
-      <header style={{ 
-        position: 'sticky', 
-        top: 0, 
-        zIndex: 50, 
-        backgroundColor: 'var(--header-bg)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: '1px solid var(--glass-border)',
-        padding: '1rem 0'
-      }}>
-        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-          {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--primary-color)', fontWeight: '800', fontSize: '1.3rem', letterSpacing: '-0.02em' }}
-          >
-            <img src="/logo.jpg" alt="Birr Logo" style={{ width: '42px', height: '42px', borderRadius: '50%', objectFit: 'cover', filter: 'drop-shadow(0 4px 12px rgba(13, 148, 136, 0.1))' }} />
-            <span>{t('app.title')}</span>
-          </motion.div>
+          {/* Open Graph Tags for Social Media Sharing */}
+          <meta property="og:title" content={t('seo.title')} />
+          <meta property="og:description" content={t('seo.description')} />
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content={t('app.title')} />
+          <meta property="og:locale" content={i18n.language === 'ar' ? 'ar_EG' : 'en_US'} />
+          <meta property="og:image" content="https://birr-care.vercel.app/logo.jpg" />
 
-          {/* Nav + Controls */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}
-          >
-            {/* Nav pill */}
-            <nav style={{ 
-              display: 'flex', gap: '0.25rem',
-              background: 'var(--glass-bg)',
-              border: '1px solid var(--glass-border)',
-              borderRadius: '9999px',
-              padding: '0.35rem'
-            }}>
-              {[{ href: '/#services', label: t('app.services') }, { href: '/#contact', label: t('app.contact') }].map(link => (
-                <Link key={link.href} to={link.href} style={{ 
-                  textDecoration: 'none', color: 'var(--text-primary)', fontWeight: '600', fontSize: '0.9rem',
-                  padding: '0.4rem 1rem', borderRadius: '9999px',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'var(--badge-bg)'; e.currentTarget.style.color = 'var(--primary-color)'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--text-primary)'; }}
-                >{link.label}</Link>
-              ))}
+          <script type="application/ld+json">
+            {`
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "${t('app.title')}",
+                "alternateName": ["بر للتمريض المنزلي", "Birr Care", "Birr Home Nursing"],
+                "url": "https://birr-care.vercel.app/"
+              }
+            `}
+          </script>
+        </Helmet>
+
+        {/* Header */}
+        <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}>
+          <div className="container header-inner">
+            <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+              <Link to="/" className="brand" aria-label={t('app.title')}>
+                <img src="/logo.jpg" alt="" />
+                <span className="brand-text">
+                  <span className="brand-name">{t('app.brand')}</span>
+                  <span className="brand-tagline">{t('app.tagline')}</span>
+                </span>
+              </Link>
+            </motion.div>
+
+            <nav className="main-nav" aria-label="Main">
+              <Link to="/#services">{t('app.services')}</Link>
+              <Link to="/#contact">{t('app.contact')}</Link>
             </nav>
 
-            {/* Icon buttons */}
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
-              <button onClick={toggleTheme} style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'var(--glass-bg)',
-                border: '1px solid var(--glass-border)',
-                color: 'var(--primary-color)',
-                width: '40px', height: '40px', borderRadius: '50%',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={e => e.currentTarget.style.background = 'var(--badge-bg)'}
-              onMouseLeave={e => e.currentTarget.style.background = 'var(--glass-bg)'}
-              >
-                {theme === 'light' ? <Moon size={16} strokeWidth={2.5} /> : <Sun size={16} strokeWidth={2.5} />}
+            <motion.div
+              className="header-actions"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.05 }}
+            >
+              <button className="icon-btn" onClick={toggleTheme} aria-label={t('app.toggle_theme')}>
+                {theme === 'light' ? <Moon size={17} strokeWidth={2.25} /> : <Sun size={17} strokeWidth={2.25} />}
               </button>
-              <button onClick={toggleLanguage} style={{ 
-                display: 'flex', alignItems: 'center', gap: '0.4rem',
-                background: 'linear-gradient(135deg, var(--primary-light), var(--primary-color))',
-                border: 'none',
-                color: '#fff',
-                padding: '0.5rem 1.1rem',
-                borderRadius: '9999px',
-                cursor: 'pointer',
-                fontWeight: '700',
-                fontSize: '0.875rem',
-                boxShadow: '0 4px 14px rgba(13, 148, 136, 0.3)',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.04)'}
-              onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
-              >
-                <Globe size={15} strokeWidth={2.5} />
-                {i18n.language === 'en' ? 'العربية' : 'English'}
+              <button className="lang-btn" onClick={toggleLanguage} aria-label={i18n.language === 'en' ? 'العربية' : 'English'}>
+                <Globe size={16} strokeWidth={2.25} />
+                <span className="lang-label">{i18n.language === 'en' ? 'العربية' : 'English'}</span>
               </button>
+              {primaryPhone && (
+                <a href={`tel:${primaryPhone}`} className="btn btn-primary btn-sm header-call">
+                  <Phone size={15} strokeWidth={2.5} />
+                  {t('app.call_now')}
+                </a>
+              )}
+            </motion.div>
+          </div>
+        </header>
+
+        {/* Main Content */}
+        <main style={{ flex: 1 }}>
+          <Suspense fallback={<div className="loader" />}>
+            <Routes>
+              <Route path="/" element={
+                <>
+                  <Hero />
+                  <Services />
+                  <Contact />
+                </>
+              } />
+              <Route path="/service/:id" element={<ServiceDetail />} />
+            </Routes>
+          </Suspense>
+        </main>
+
+        {/* Footer */}
+        <footer className="site-footer">
+          <div className="container footer-grid">
+            <div className="footer-about">
+              <Link to="/" className="brand">
+                <img src="/logo.jpg" alt="" />
+                <span className="brand-text">
+                  <span className="brand-name">{t('app.brand')}</span>
+                  <span className="brand-tagline">{t('app.tagline')}</span>
+                </span>
+              </Link>
+              <p>{t('app.footer_about')}</p>
+              <div className="socials">
+                <a className="icon-btn fb" href="https://www.facebook.com/share/187ekL8bWW/" target="_blank" rel="noreferrer" aria-label="Facebook">
+                  <FacebookIcon />
+                </a>
+                <a className="icon-btn ig" href="https://www.instagram.com/abdallh.samerr?stkn=MXF0eHhybWczbG5tYQ==" target="_blank" rel="noreferrer" aria-label="Instagram">
+                  <InstagramIcon />
+                </a>
+              </div>
             </div>
-          </motion.div>
-        </div>
-      </header>
 
-      {/* Main Content */}
-      <main style={{ flex: 1 }}>
-        <Suspense fallback={
-          <div style={{ padding: '5rem', display: 'flex', justifyContent: 'center' }}>
-            <div style={{ width: '40px', height: '40px', borderRadius: '50%', border: '4px solid var(--primary-light)', borderTopColor: 'transparent', animation: 'spin 1s linear infinite' }}></div>
-            <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-          </div>
-        }>
-          <Routes>
-            <Route path="/" element={
-              <>
-                <Hero />
-                <Services />
-                <Contact />
-              </>
-            } />
-            <Route path="/service/:id" element={<ServiceDetail />} />
-          </Routes>
-        </Suspense>
-      </main>
+            <div className="footer-col">
+              <h4>{t('app.quick_links')}</h4>
+              <ul>
+                <li><Link to="/">{t('app.home')}</Link></li>
+                <li><Link to="/#services">{t('app.services')}</Link></li>
+                <li><Link to="/#contact">{t('app.contact')}</Link></li>
+              </ul>
+            </div>
 
-      {/* Footer */}
-      <footer style={{ backgroundColor: 'var(--footer-bg)', padding: '3rem 0' }}>
-        <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.25rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--primary-color)', fontWeight: '800', fontSize: '1.2rem', textAlign: 'center' }}>
-            <img src="/logo.jpg" alt="Birr Logo" style={{ width: '38px', height: '38px', borderRadius: '50%', objectFit: 'cover' }} />
-            {t('app.title')}
-          </div>
-          
-          {/* Social Links */}
-          <div style={{ display: 'flex', gap: '1rem' }}>
-            <a 
-              href="https://www.facebook.com/share/187ekL8bWW/" 
-              target="_blank" 
-              rel="noreferrer"
-              style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                width: '40px', height: '40px', borderRadius: '50%',
-                background: 'var(--glass-bg)',
-                border: '1px solid var(--glass-border)',
-                color: 'var(--text-primary)',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#1877F2'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = '#1877F2'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'var(--glass-bg)'; e.currentTarget.style.color = 'var(--text-primary)'; e.currentTarget.style.borderColor = 'var(--glass-border)'; }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-              </svg>
-            </a>
-            
-            <a 
-              href="https://www.instagram.com/abdallh.samerr?stkn=MXF0eHhybWczbG5tYQ==" 
-              target="_blank" 
-              rel="noreferrer"
-              style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                width: '40px', height: '40px', borderRadius: '50%',
-                background: 'var(--glass-bg)',
-                border: '1px solid var(--glass-border)',
-                color: 'var(--text-primary)',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseEnter={e => { 
-                e.currentTarget.style.background = 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)'; 
-                e.currentTarget.style.color = '#fff'; 
-                e.currentTarget.style.borderColor = 'transparent'; 
-              }}
-              onMouseLeave={e => { 
-                e.currentTarget.style.background = 'var(--glass-bg)'; 
-                e.currentTarget.style.color = 'var(--text-primary)'; 
-                e.currentTarget.style.borderColor = 'var(--glass-border)'; 
-              }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
-            </a>
+            <div className="footer-col">
+              <h4>{t('contact.phone_number')}</h4>
+              <ul>
+                {phones.map(phone => (
+                  <li key={phone}><a href={`tel:${phone}`} className="ltr">{phone}</a></li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)' }}></div>
-          <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.85rem' }}>&copy; {new Date().getFullYear()} {t('app.rights')}</p>
-        </div>
-      </footer>
-    </div>
+          <div className="container footer-bottom">
+            <p>&copy; {new Date().getFullYear()} {t('app.rights')}</p>
+            <p>{t('hero.badge')}</p>
+          </div>
+        </footer>
+
+        {primaryPhone && (
+          <a
+            className="fab"
+            href={`https://wa.me/2${primaryPhone}`}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="WhatsApp"
+          >
+            <MessageCircle size={26} strokeWidth={2.25} />
+          </a>
+        )}
+      </div>
+    </MotionConfig>
   );
 }
 
